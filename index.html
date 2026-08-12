@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operatori Logici</title>
+
+</head>
+
+<body>
+    <h2>Operatori Logici</h2>
+    <label>
+        A:
+        <input type="number" id="A" min="0" max="1" value="0">
+    </label>
+    <br><br>
+    <label>
+        B:
+        <input type="number" id="B" min="0" max="1" value="0">
+    </label>
+
+    <hr>
+
+    <p>NOT A (!A): <span id="notA"></span></p>
+    <p>NOT B (!B): <span id="notB"></span></p>
+
+    <p>OR (A || B): <span id="or"></span></p>
+    <p>AND (A && B): <span id="and"></span></p>
+
+    <p>XOR !((A! && B) || (A && !B)): <span id="xor"></span></p>
+
+    <p>XNOR (!XOR): <span id="xnor"></span></p>
+    <p>NAND (!AND): <span id="nand"></span></p>
+    <p>NOR (!OR): <span id="nor"></span></p>
+
+    <script>
+        function calcola() {
+            const A = Number(
+                document.getElementById('A').value
+            );
+            const B = Number(
+                document.getElementById('B').value
+            );
+            // console.log('A:', A, 'B:', B);
+
+            let operatoreAnd, operatoreOr, operatoreXor, operatoreXnor, operatoreNand, operatoreNor;
+
+            operatoreAnd = A && B;
+            operatoreOr = A || B;
+
+            operatoreXor = (!A && B) || (A && !B);
+
+            operatoreXnor = !operatoreXor; // !((!A && B) || (A && !B))
+
+            operatoreNor = !operatoreOr; // !(A || B)
+
+            operatoreNand = !operatoreAnd; // !(A && B)
+
+            document.getElementById('notA').textContent = Number(!A);
+            document.getElementById('notB').textContent = Number(!B);
+            document.getElementById('or').textContent = Number(operatoreOr);
+            document.getElementById('and').textContent = Number(operatoreAnd);
+            document.getElementById('xor').textContent = Number(operatoreXor);
+            document.getElementById('xnor').textContent = Number(operatoreXnor);
+            document.getElementById('nand').textContent = Number(operatoreNand);
+            document.getElementById('nor').textContent = Number(operatoreNor);F
+        }
+
+        document.getElementById('A').addEventListener('input', calcola);
+        document.getElementById('B').addEventListener('input', calcola);
+
+        calcola();
+
+    </script>
+
+</body>
+
+</html>
